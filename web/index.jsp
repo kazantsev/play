@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Mar 24, 2012, 11:34:19 PM
+    Created on : Mar 21, 2012, 10:44:43 PM
     Author     : kazantsev
 --%>
 
@@ -9,9 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Mafia</title>
     </head>
     <body>
-        <h1>Hello World!!!</h1>
+        <table> 
+            <tr>
+                <td>
+                    <a href="registration.jsp" >register </a>
+                </td>
+                <td>
+                    <a href="index.jsp" onClick="alert('hui');">log in </a>
+                </td>
+            </tr>
     </body>
 </html>
