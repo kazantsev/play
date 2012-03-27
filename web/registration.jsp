@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form>
+        <form style="align: center">
             <table>
                 <tr>
                     <td>
@@ -31,6 +31,12 @@
                     <td>
                        <div id="PasswLabel"></div> <input type="text" name="UserPassw" id="UserPassw" value="Your Password" onFocus="handleFocus('UserPassw', 'PasswLabel', 'Your Password', true);"
                                                           onblur="handleBlur('UserPassw', 'PasswLabel', 'Your Password', true);"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <div id="PasswLabel1"></div> <input type="text" name="UserPassw1" id="UserPassw1" value="Confirm Password" onFocus="handleFocus('UserPassw1', 'PasswLabel1', 'Confirm Password', true);"
+                                                          onblur="handleBlur('UserPassw1', 'PasswLabel1', 'Confirm Password', true);"/>
                     </td>
                 </tr>
                 <tr>
