@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.ini4j.*;
 
 /**
  *
@@ -32,9 +33,11 @@ public class Register extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
+            String userName = request.getParameter("UserName");
+            String userLogin = request.getParameter("UserLogin");
+            String userPassw = request.getParameter("UserPassw");
+            File file = new File()
+            Ini ini = new Ini(null);
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Register</title>");            
