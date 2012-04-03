@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.ini4j.*;
 import org.ini4j.Profile.Section;
 
@@ -73,6 +74,9 @@ public class Register extends HttpServlet {
 							StringBuffer xml = new StringBuffer();
 							xml.append("<?xml version=\"1.0\"?>\n");
 							xml.append("<Result registered=\"true\"/>");
+							HttpSession session = request.getSession(true);
+							session.setAttribute("UserLogin", userLogin);
+						  session.setAttribute("UserName", userName);
 							String resXml = xml.toString();
 							response.setContentType("text/xml");
 							response.getWriter().write(resXml);

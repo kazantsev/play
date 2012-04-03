@@ -31,7 +31,7 @@ function getRegReqResults(resXML) {
  var status = resXML.getElementsByTagName("Result")[0];
  var registered = status.getAttribute("registered");
  if (registered == "true") {
-	 alert ("successfully registered");
+	 window.location = "test.jsp";
  } else {
 	 alert ("error!");
  }

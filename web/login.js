@@ -20,7 +20,7 @@ function getLoginReqResults(resXML) {
  var status = resXML.getElementsByTagName("Result")[0];
  var loggedin = status.getAttribute("loggedin");
  if (loggedin == "true") {
-	 alert ("successfully logged in");
+	 window.location = "test.jsp";
  } else {
 	 alert ("error!");
  }

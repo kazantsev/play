@@ -65,6 +65,7 @@ public class Login extends HttpServlet {
 					 System.out.println("b");
 					 HttpSession session = request.getSession(true);
 					 session.setAttribute("UserLogin", userLogin);
+					 session.setAttribute("UserName", ini.get(userLogin, "UserName"));
 					 StringBuffer xml = new StringBuffer();
 					 xml.append("<?xml version=\"1.0\"?>\n");
 					 xml.append("<Result loggedin=\"true\"/>");

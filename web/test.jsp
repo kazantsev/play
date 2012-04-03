@@ -12,11 +12,15 @@
 		<title>JSP Page</title>
 	</head>
 	<body>
+		Hi, 
+		
 		<%
-		out.println(session.getAttribute("UserLogin"));
+		out.println(session.getAttribute("UserName"));
 		
 
 
 %>
+
+!
 	</body>
 </html>
