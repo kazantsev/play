@@ -18,8 +18,9 @@
                     <a href="registration.jsp" >register </a>
                 </td>
                 <td>
-                    <a href="index.jsp" onClick="alert('hui');">log in </a>
+                    <a href="login.jsp" >log in </a>
                 </td>
             </tr>
+				</table>
     </body>
 </html>
