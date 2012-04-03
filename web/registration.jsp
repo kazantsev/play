@@ -5,12 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<script src="my.js"></script>
-<!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+				<script src="my.js"></script>
+				<script src="reg.js"></script>
+				<script src="ajax.js"></script>
     </head>
     <body>
         <form style="align: center">
@@ -41,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" value="reg"/>
+											<input type="button" value="reg" onclick="sendRegReq()"/>
                     </td>
                 </tr>
             </table>   
