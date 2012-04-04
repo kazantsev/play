@@ -42,6 +42,19 @@
                 document.players.playres.value=req.responseText;
             }
             
+            function joinRoom(name){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults2);
+                    req.open("POST","JoinRoom", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+name);
+            }
+            
+            function getExecResults2(){
+                if(req.readyState==4)
+                document.joiner.joinres.value=req.responseText;
+            }
+            
         </script>
         
         <title>Room Test</title>
@@ -59,8 +72,20 @@
         <form name="players">
             <input name="roomName"/>
             <input type="button" onclick="showPlayers(roomName.value);" value="Показать парней"/>
+            <br>
             <input name="playres"/>
             
+        </form>
+        
+        <br><br><br>
+        
+        
+        <form name="joiner">
+            <input name="roomName"/>
+            <input type="button" onclick="joinRoom(roomName.value);" value="Зайти в комнату"/>
+            <br>
+            <input name="joinres"/>
+        
         </form>
        
         
