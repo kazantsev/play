@@ -26,7 +26,8 @@
 
             function getExecResults(){
                 if(req.readyState==4)
-                document.mainform.reqres.value=req.responseText;
+                //document.mainform.reqres.value=req.responseText;
+                window.location = "rooms.jsp" ;    
             }
             
             
@@ -39,8 +40,8 @@
             }
             
             function getExecResults1(){
-                if(req.readyState==4)
-                window.location = "rooms.jsp"    
+                if(req.readyState==4){}
+                   
             }
             
         </script>
