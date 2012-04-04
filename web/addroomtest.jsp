@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:include page="index.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +40,7 @@
             
             function getExecResults1(){
                 if(req.readyState==4)
-                document.players.playres.value=req.responseText;
+                window.location = "rooms.jsp"    
             }
             
         </script>
@@ -52,7 +53,7 @@
             <input name="roomName"/>
             <input type="button" onClick="addRoom(roomName.value);" value="Добавить комнату"/>
             <br>
-        <input name="reqres"/>
+        
         </form>
         
         <br><br><br>
