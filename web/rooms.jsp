@@ -23,7 +23,11 @@
             homeDir += "/applications/play";
             File f = new File(homeDir + "/rooms");
             String[] fnames =  f.list();
-            
+            for (int i = 0; i < fnames.length; ++i){
+                out.println("<tr><td>");
+                out.println(fnames[i].replace(".txt", ""));
+                out.println("</td><td><a href=\"\">join</a></td></tr>");
+            }
 
 
 %>
