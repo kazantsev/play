@@ -32,52 +32,55 @@ public class Login extends HttpServlet {
 	 * @throws ServletException if a servlet-specific error occurs
 	 * @throws IOException if an I/O error occurs
 	 */
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 					throws ServletException, IOException {
 		
-		PrintWriter out = response.getWriter();
-		try {
-       String userLogin = request.getParameter("UserLogin");
-       String userPassw = request.getParameter("UserPassw");
-			 // получаем расположение домашней папки
-			 Properties pr = System.getProperties();
-			 String homeDir = pr.getProperty("user.dir");
-			 homeDir = homeDir.substring(0, homeDir.indexOf("/config"));
-			 homeDir += "/applications/play";
-			 // Открываем ini-файл с рег. данными
-       File file = new File(homeDir + "/RegInfo.ini");
-       Wini ini = new Wini(file);
-			 // Проверяем, есть ли пользователь с таким логином
-			 // Получаем список всех зарег. пользователей
-			 ArrayList<String> userLogins = new ArrayList<String>();
-			 userLogins.clear();
-			 Object[] arr = ini.keySet().toArray();
-			 for (int i=0; i<ini.size(); i++){
-					userLogins.add(arr[i].toString());
-			 }
-				// Проверяем, есть ли указанный логин в списке пользователей.
-			 if ( userLogins.indexOf(userLogin) != -1){
-				 // Если есть, проверяем пароль
-				 System.out.println("a");
-				 System.out.println("UserPassw1 = " + ini.get(userLogin, "UserPassw") + ", " + ini.get(userLogin, "UserPassw").length());
-				 System.out.println("UserPassw2 = " + userPassw + ", " + userPassw.length()) ;
-				 if (ini.get(userLogin, "UserPassw").trim().equals(userPassw.trim())){
-					 System.out.println("b");
-					 HttpSession session = request.getSession(true);
-					 session.setAttribute("UserLogin", userLogin);
-					 session.setAttribute("UserName", ini.get(userLogin, "UserName"));
-					 StringBuffer xml = new StringBuffer();
-					 xml.append("<?xml version=\"1.0\"?>\n");
-					 xml.append("<Result loggedin=\"true\"/>");
-					 String resXml = xml.toString();
-					 response.setContentType("text/xml");
-					 response.getWriter().write(resXml);
-				 } else {
-					 System.out.println("c");
-				 }
-			 } else {
-				 System.out.println("d");
-			 }
+        PrintWriter out = response.getWriter();
+        try {
+            // получаем данные, введенные пользователем
+            String userLogin = request.getParameter("UserLogin");
+            String userPassw = request.getParameter("UserPassw");
+            // получаем расположение домашней папки
+            Properties pr = System.getProperties();
+            String homeDir = pr.getProperty("user.dir");
+            homeDir = homeDir.substring(0, homeDir.indexOf("/config"));
+            homeDir += "/applications/play";
+            // Открываем ini-файл с рег. данными
+            File file = new File(homeDir + "/RegInfo.ini");
+            Wini ini = new Wini(file);
+            // Проверяем, есть ли пользователь с таким логином
+            // Получаем список всех зарег. пользователей
+            ArrayList<String> userLogins = new ArrayList<String>();
+	    userLogins.clear();
+            Object[] arr = ini.keySet().toArray();
+	    for (int i=0; i<ini.size(); i++){
+		userLogins.add(arr[i].toString());
+            }
+            // Заранее создаем буфер для xml-ответа, чтобы не дублировать код в ветвлениях
+            StringBuffer xml = new StringBuffer();
+            xml.append("<?xml version=\"1.0\"?>\n");
+            // Проверяем, есть ли указанный логин в списке 
+	    if ( userLogins.indexOf(userLogin) != -1){
+                // Если есть, проверяем пароль
+                if (ini.get(userLogin, "UserPassw").trim().equals(userPassw.trim())){
+                   // пароль верный. задаем сессию и параметры
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("UserLogin", userLogin);
+                    session.setAttribute("UserName", ini.get(userLogin, "UserName"));
+                    // пишем ответ, что все хорошо.
+                    xml.append("<Result loggedin=\"true\"/>");
+		} else {
+                   // пароль неверный. отправляем ответ, что авторизация не удалась.
+                   xml.append("<Result loggedin=\"false\" errtype=\"wrngpwd\"/>");                     
+		}
+            } else {
+		// пользователя с указанным логином не сущ.
+                xml.append("<Result loggedin=\"false\" errtype=\"nousr\"/>");                     
+            }
+            // отправляем ответ.
+            String resXml = xml.toString();
+            response.setContentType("text/xml");
+            response.getWriter().write(resXml);
        
         
        // printPageStart(out);

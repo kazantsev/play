@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Mar 21, 2012, 10:44:43 PM
-    Author     : kazantsev
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,15 +7,14 @@
         <title>Mafia</title>
     </head>
     <body>
-        <table> 
-            <tr>
-                <td>
-                    <a href="registration.jsp" >register </a>
-                </td>
-                <td>
-                    <a href="login.jsp" >log in </a>
-                </td>
-            </tr>
-				</table>
+        <% if (session.getAttribute("UserLogin") == null ){
+            out.println ("<table><tr><td><a href=\"registration.jsp\" >register </a></td>");
+            out.println("<td><a href=\"login.jsp\" >log in </a></td> </tr></table>");       
+           } else {
+            out.println("Hi, " + session.getAttribute("UserName") + "!");
+           
+           }    
+    
+    %>
     </body>
 </html>

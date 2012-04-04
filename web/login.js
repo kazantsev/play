@@ -20,9 +20,18 @@ function getLoginReqResults(resXML) {
  var status = resXML.getElementsByTagName("Result")[0];
  var loggedin = status.getAttribute("loggedin");
  if (loggedin == "true") {
-	 window.location = "test.jsp";
+	 window.location = "index.jsp";
  } else {
-	 alert ("error!");
+	 var errtype = status.getAttribute("errtype");
+         if (errtype == "wrngpwd"){
+                alert("Wrong password");
+         }
+         if  (errtype == "nousr") {
+                alert("User with this login does not exist");
+         }
+         if (errtype == null){
+                alert("Unknown mistake. Try again");
+         }
  }
 	 
 /* var divDismatches1Rep = document.getElementById("dismatches1Report");
