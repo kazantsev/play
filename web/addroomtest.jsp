@@ -35,7 +35,9 @@
     <body>
         <h1>Hello World!</h1>
         <form name="mainform">
-        <input type="button" onClick="addRoom('newRoom');"/>
+            <input name="roomName"/>
+            <input type="button" onClick="addRoom(roomName.value);" value="Добавить комнату"/>
+            <br>
         <input name="reqres"/>
         </form>
         
