@@ -12,6 +12,10 @@
         <servlet-name>JoinToRoom</servlet-name>
         <servlet-class>play.JoinToRoom</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateRoom</servlet-name>
+        <servlet-class>play.CreateRoom</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>JoinToRoom</servlet-name>
         <url-pattern>/JoinToRoom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateRoom</servlet-name>
+        <url-pattern>/CreateRoom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

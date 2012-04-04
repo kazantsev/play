@@ -1,4 +1,4 @@
- /* казаааааан
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -60,32 +60,49 @@ public class CreateRoom extends HttpServlet {
             
             String roomName = request.getParameter("rn");
             
+            System.out.println(roomName);
+            
             // получаем расположение домашней папки
             String homeDir = System.getProperties().getProperty("user.dir");
+            System.out.println(homeDir);
             homeDir = homeDir.substring(0, homeDir.indexOf("/config"));
+            System.out.println(homeDir);
             homeDir += "/applications/play";
+            System.out.println(homeDir);
             
             //переходим к комнатам /rooms
             homeDir+="/rooms";
+            System.out.println(homeDir);
             
             //получаем список комнат
-            String[] roomList = FileSystemWorker.GetFilesInFolder(homeDir, ".xml");
-            roomList = FileSystemWorker.RemoveFormatFromFileList(roomList, ".xml");
-            
-            boolean nameAvaiable=true;
-            for(String room : roomList){
-                if (room == roomName){
-                    //такая комната уже есть
-                    nameAvaiable = false;
-                    break;
-                }
-            }
+//            String[] roomList = FileSystemWorker.GetFilesInFolder(homeDir, ".xml");
+//            roomList = FileSystemWorker.RemoveFormatFromFileList(roomList, ".xml");
+//            File f = new File(homeDir);
+//            String[] roomList = f.list();
+//            
+//            System.out.println("LOL1 "+roomList.length+"1");
+//            
+//            
+//            for(int i=0;i<roomList.length;++i){
+//                System.out.println(roomList[i]);
+//            }
+//            
+//            boolean nameAvaiable=true;
+//            for(String room : roomList){
+//                if (room == roomName){
+//                    //такая комната уже есть
+//                    nameAvaiable = false;
+//                    break;
+//                }
+//            }
 
-            if(nameAvaiable){
+            System.out.println("LOL2 ");
+            if(true){
                 //создаем комнату
                 File roomFile = new File(homeDir + "/"+roomName+".xml");
                 try
                 {
+                    
                     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
@@ -94,11 +111,13 @@ public class CreateRoom extends HttpServlet {
                     Element rootElement = document.createElement("room");
                     document.appendChild(rootElement);
 
+                    
                     //добавляем название игры
                     Attr attr = document.createAttribute("roomName");
                     attr.setValue(roomName);
                     rootElement.setAttributeNode(attr);
 
+                    
                     //Child's корневого элемента
                     Element owners = document.createElement("owners"); //создатели
                     rootElement.appendChild(owners);
@@ -107,11 +126,18 @@ public class CreateRoom extends HttpServlet {
                     rootElement.appendChild(players);
 
 
-
+                    System.out.println("LOL6 ");
+                    
+                    
                     Element owner = document.createElement("owner");  //создатель
                     owners.appendChild(owner);
                     attr = document.createAttribute("name");         
-                    attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
+                    //attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
+                    if(request.getSession(true).getAttribute("UserLogin")==null || request.getSession(true).getAttribute("UserLogin").toString().equals(""))
+                        attr.setValue("lolik");
+                    else
+                        attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
+                    
                     owner.setAttributeNode(attr);
 
 
@@ -120,9 +146,10 @@ public class CreateRoom extends HttpServlet {
                     Transformer transformer = transformerFactory.newTransformer();
                     DOMSource domSource = new DOMSource(document);
                     StreamResult streamResult = new StreamResult(roomFile);
+                    
 
                     transformer.transform(domSource, streamResult);
-                    System.out.println("Файл создан!!!");
+                    
                     
                     out.write("0");
                 }

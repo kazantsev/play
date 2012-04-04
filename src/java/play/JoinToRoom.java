@@ -45,9 +45,7 @@ public class JoinToRoom extends HttpServlet {
             FileReader f = new FileReader(homeDir + "/rooms/" + roomName + ".txt");
             BufferedReader br = new BufferedReader(f); 
             String s = "";
-            while (){
-                
-            }
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet JoinToRoom</title>");            

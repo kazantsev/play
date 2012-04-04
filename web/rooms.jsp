@@ -25,7 +25,7 @@
             String[] fnames =  f.list();
             for (int i = 0; i < fnames.length; ++i){
                 out.println("<tr><td>");
-                out.println(fnames[i].replace(".txt", ""));
+                out.println(fnames[i].replace(".xml", ""));
                 out.println("</td><td><a href=\"\">join</a></td></tr>");
             }
 
