@@ -10,7 +10,9 @@ and open the template in the editor.
         <owner name="lol1"/>
     </owners>
     <players>
-        
+        <player name="Vasya"/>
+        <player name="Petya"/>
+        <player name="lolik"/>
     </players>
     
 </room>

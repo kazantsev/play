@@ -28,6 +28,20 @@
                 document.mainform.reqres.value=req.responseText;
             }
             
+            
+            function showPlayers(roomname){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults1);
+                    req.open("POST","GetRoomMembers", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+roomname);
+            }
+            
+            function getExecResults1(){
+                if(req.readyState==4)
+                document.players.playres.value=req.responseText;
+            }
+            
         </script>
         
         <title>Room Test</title>
@@ -40,6 +54,15 @@
             <br>
         <input name="reqres"/>
         </form>
+        
+        <br><br><br>
+        <form name="players">
+            <input name="roomName"/>
+            <input type="button" onclick="showPlayers(roomName.value);" value="Показать парней"/>
+            <input name="playres"/>
+            
+        </form>
+       
         
     </body>
 </html>
