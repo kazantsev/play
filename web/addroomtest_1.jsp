@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="index.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,12 +25,35 @@
 
             function getExecResults(){
                 if(req.readyState==4)
-                //document.mainform.reqres.value=req.responseText;
-                window.location = "rooms.jsp" ;    
+                document.mainform.reqres.value=req.responseText;
             }
             
             
+            function showPlayers(roomname){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults1);
+                    req.open("POST","GetRoomMembers", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+roomname);
+            }
             
+            function getExecResults1(){
+                if(req.readyState==4)
+                document.players.playres.value=req.responseText;
+            }
+            
+            function joinRoom(name){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults2);
+                    req.open("POST","JoinRoom", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+name);
+            }
+            
+            function getExecResults2(){
+                if(req.readyState==4)
+                document.joiner.joinres.value=req.responseText;
+            }
             
         </script>
         
@@ -43,23 +65,26 @@
             <input name="roomName"/>
             <input type="button" onClick="addRoom(roomName.value);" value="Добавить комнату"/>
             <br>
-        
+        <input name="reqres"/>
         </form>
         
         <br><br><br>
         <form name="players">
             <input name="roomName"/>
             <input type="button" onclick="showPlayers(roomName.value);" value="Показать парней"/>
+            <br>
             <input name="playres"/>
             
         </form>
+        
+        <br><br><br>
         
         
         <form name="joiner">
             <input name="roomName"/>
             <input type="button" onclick="joinRoom(roomName.value);" value="Зайти в комнату"/>
             <br>
-            
+            <input name="joinres"/>
         
         </form>
        

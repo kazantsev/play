@@ -28,4 +28,33 @@ function handleBlur(fieldId, labelId, defValue, isPassw){
     } 
 }
 
+var req;
+
+function showPlayers(roomname){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults1);
+                    req.open("POST","GetRoomMembers", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+roomname);
+            }
+            
+            function getExecResults1(){
+                if(req.readyState==4){}
+                   
+            }
+            
+             function joinRoom(name){
+                    req = newXMLHttpRequest();
+                    req.onreadystatechange = getReadyStateHandler(req, getExecResults2);
+                    req.open("POST","JoinRoom", true);
+                    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send("rn="+name);
+            }
+            
+            function getExecResults2(){
+                if(req.readyState==4){}
+                alert ("joined");
+               // document.joiner.joinres.value=req.responseText;
+            }
+
 

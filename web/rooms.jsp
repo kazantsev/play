@@ -13,6 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script src="my.js"></script>
+        <script src="ajax.js"></script>
     </head>
     <body>
         <table>
@@ -26,7 +28,7 @@
             for (int i = 0; i < fnames.length; ++i){
                 out.println("<tr><td>");
                 out.println(fnames[i].replace(".xml", ""));
-                out.println("</td><td><a href=\"\">join</a></td></tr>");
+                out.println("</td><td><a href=\"\" onclick=\"joinRoom('" + fnames[i].replace(".xml", "") + "'); \" >join</a></td></tr>");
             }
 
 

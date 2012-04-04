@@ -122,7 +122,7 @@ public class CreateRoom extends HttpServlet {
                     Element owners = document.createElement("owners"); //создатели
                     rootElement.appendChild(owners);
 
-                    Element players = document.createElement("owners"); //игроки
+                    Element players = document.createElement("players"); //игроки
                     rootElement.appendChild(players);
 
 
@@ -131,7 +131,10 @@ public class CreateRoom extends HttpServlet {
                     
                     Element owner = document.createElement("owner");  //создатель
                     owners.appendChild(owner);
-                    attr = document.createAttribute("name");         
+                    attr = document.createAttribute("name"); 
+                    
+                    
+                    
                     //attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
                     if(request.getSession(true).getAttribute("UserLogin")==null || request.getSession(true).getAttribute("UserLogin").toString().equals(""))
                         attr.setValue("lolik");
@@ -139,6 +142,22 @@ public class CreateRoom extends HttpServlet {
                         attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
                     
                     owner.setAttributeNode(attr);
+                    
+                    Element player = document.createElement("player");  //создатель
+                    players.appendChild(player);
+                    attr = document.createAttribute("name"); 
+                    
+                    
+                    
+                    //attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
+                    if(request.getSession(true).getAttribute("UserLogin")==null || request.getSession(true).getAttribute("UserLogin").toString().equals(""))
+                        attr.setValue("lolik");
+                    else
+                        attr.setValue(request.getSession(true).getAttribute("UserLogin").toString());
+                    
+                    player.setAttributeNode(attr);
+                    
+                    
 
 
                     //Теперь запишем контент в XML файл
