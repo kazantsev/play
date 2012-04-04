@@ -11,7 +11,7 @@
             out.println ("<table><tr><td><a href=\"registration.jsp\" >register </a></td>");
             out.println("<td><a href=\"login.jsp\" >log in </a></td> </tr></table>");       
            } else {
-            out.println("Hi, " + session.getAttribute("UserName") + "!");
+            out.println("<table><tr><td>Hi, " + session.getAttribute("UserName") + "!</td> <td><a href=\"\" >log out</a> </td> </tr> </table>");
            
            }    
     
