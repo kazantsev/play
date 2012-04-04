@@ -27,4 +27,11 @@ public class FileSystemWorker {
         return files;
     }
     
+    public static String[] RemoveFormatFromFileList(String[] list,String format){
+        for ( String fileName : list ) { 
+            fileName = fileName.replace(format, "");
+        } 
+        return list;
+    }
+    
 }
